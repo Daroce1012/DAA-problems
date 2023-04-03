@@ -34,12 +34,20 @@ def is_correct_solution(k,list_k):
 def test_solution(months):
     n = len(months)
     list_k = []
-    for k in range(1,n):    
-        for i in range(0,n-k):
+    for k in range(1,n):  
+        print("nuevo k") 
+        print(k)
+        print("n-k") 
+        print(n-k)
+        for i in range(0,n-k+1):
+            print("i nuevo")
+            print(i)
             result = sum(months[i:i+k])
+            print(result)
             if result < 0: #si k no es valido
                 break
-            elif i + k >= n-k : #Si llegue al final
+            # elif i + k >= n-k : #Si llegue al final
+            elif i + k >= n:
                 list_k.append(k)
                 break
     return list_k  
@@ -67,6 +75,8 @@ def test_solution(months):
        
 #months = [-5, -4, -6, -5, 21, -5, -5, -5, -5]
 months =generate_array(12)
+# months = [-12, 36, -44, 93, -96, 95, 92, 92, 92, 92, 92, 92]
+# months = [78, 77, 68, -98, 37, 26, -79, -79, -79, -79, -79, -79]
 print(months)
 print("Solucion de fuerza bruta")         
 print(test_solution(months)) 
