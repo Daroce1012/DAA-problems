@@ -6,6 +6,7 @@
 import random
 import math
 from itertools import permutations
+from colorama import Cursor, init, Fore
 
 from solution import *
 
@@ -35,15 +36,15 @@ def test_solution(months):
     n = len(months)
     list_k = []
     for k in range(1,n):  
-        print("nuevo k") 
-        print(k)
-        print("n-k") 
-        print(n-k)
+        # print("nuevo k") 
+        # print(k)
+        # print("n-k") 
+        # print(n-k)
         for i in range(0,n-k+1):
-            print("i nuevo")
-            print(i)
+            # print("i nuevo")
+            # print(i)
             result = sum(months[i:i+k])
-            print(result)
+            # print(result)
             if result < 0: #si k no es valido
                 break
             # elif i + k >= n-k : #Si llegue al final
@@ -74,14 +75,28 @@ def test_solution(months):
 
        
 #months = [-5, -4, -6, -5, 21, -5, -5, -5, -5]
-months =generate_array(12)
-# months = [-12, 36, -44, 93, -96, 95, 92, 92, 92, 92, 92, 92]
-# months = [78, 77, 68, -98, 37, 26, -79, -79, -79, -79, -79, -79]
-print(months)
-print("Solucion de fuerza bruta")         
-print(test_solution(months)) 
-print("Solucion optima")
-print(solution(months))       
+for i in range(1, 1000):
+    print("***************************************************")
+    print("CASO DE PRUEBA")
+    print(i)
+    months =generate_array(12)
+    # months = [-12, 36, -44, 93, -96, 95, 92, 92, 92, 92, 92, 92]
+    # months = [78, 77, 68, -98, 37, 26, -79, -79, -79, -79, -79, -79]
+    print(months)
+    print("Solucion de fuerza bruta")
+    result1 = test_solution(months)     
+    print(result1) 
+    print("Solucion optima")
+    result2 = solution(months)
+    print(result2)  
+
+    if len(result1) == 0 and result2 == None:
+        print( Fore.GREEN  + "CORRECT ")
+    elif len(result1) == 0 or result2 == None:
+        print(Fore.RED + "INCORRECT")
+    else:
+        print( Fore.GREEN  + "CORRECT ")
+    print("**************************************************")  
 
         
 
