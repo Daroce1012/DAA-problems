@@ -22,3 +22,5 @@ Ayude a Deborah con un algoritmo que encuentre un $K$ tal que
 todas las secuencias de meses de tamaño $k$ posibles, tengan balance
 positivo.
 
+Nota:
+    Para probar el c\'odigo solo tiene que correr el tester.
