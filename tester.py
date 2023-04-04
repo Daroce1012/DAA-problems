@@ -61,10 +61,10 @@ for i in range(1, 1000):
 
     if len(result1) == 0 and result2 == 0:
         print( Fore.GREEN  + "CORRECT ")
-    elif len(result1) == 0 or result2 == 0:
-        print(Fore.RED + "INCORRECT")
-    else:
+    elif not len(result1) == 0 and not result2 == 0:
         print( Fore.GREEN  + "CORRECT ")
+    else:
+        print(Fore.RED + "INCORRECT")
     print("**************************************************")  
 
         
