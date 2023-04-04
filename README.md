@@ -23,4 +23,4 @@ todas las secuencias de meses de tamaño $k$ posibles, tengan balance
 positivo.
 
 Nota:
-    Para probar el c\'odigo solo tiene que correr el tester.
+    Para probar el código del algoritmo solo tiene que correr el tester. 
