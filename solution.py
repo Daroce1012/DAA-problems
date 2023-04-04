@@ -25,22 +25,13 @@ def solution(months):
         return n
     print(solution) 
     k = int(n/2)
-    #medium_plus = n-k #cant de elementos que no son todos necesariamente iguales 
     value = months[n-k]
     list_posible_k = posible_k(solution)
     
     for k in list_posible_k:
         for i in range(0,n-k+1):
-            #pos = n-k-i
             if i+k<=n and solution[i] - value*(n-(i+k)) <0:
                 break
             if i == n-k:
                 return k
-            
-            #if i+k<=n and solution[pos] - value*(n-(pos+k)) <0:
-            #    break
-            #elif pos==0:
-            #    return k
-
-months = [-5,-5,-5,-5,21,-5,-5,-5,-5]
-print(solution(months))
+    return 0        
