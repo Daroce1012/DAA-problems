@@ -1,0 +1,9 @@
+\select@language {spanish}
+\contentsline {title}{Proyecto de \unskip \ \ignorespaces Dise\~no y An\'alisis de Algoritmos}{2}{chapter.1}
+\authcount {1}
+\contentsline {author}{Belsai Arango Hern\'andez \unskip \ \ignorespaces Daniela Rodr\'iguez Cepero }{2}{chapter.1}
+\contentsline {section}{\numberline {1}Problema}{2}{section.1.1}
+\select@language {spanish}
+\contentsline {section}{\numberline {2}Soluci\'on}{3}{section.1.2}
+\contentsline {section}{\numberline {3}Correctitud}{5}{section.1.3}
+\contentsline {section}{\numberline {4}Complejidad Temporal}{7}{section.1.4}

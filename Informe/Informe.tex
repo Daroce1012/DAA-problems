@@ -1,0 +1,137 @@
+\documentclass[runningheads,a4paper]{llncs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{subfig}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+%\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage[english, spanish]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage{url}
+\urldef{\mailsa}\path|https://github.com/Daroce1012/DAA-problems/tree/Tito_el_corrupto|    
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+	\noindent\keywordname\enspace\ignorespaces#1}
+
+
+\begin{document}
+	
+	\mainmatter 
+	
+	\tableofcontents
+	\newpage
+	\title{Proyecto de \\Dise\~no y An\'alisis de Algoritmos}
+	
+	%titulo del problema
+	\titlerunning{Dise\~no y An\'alisis de Algoritmos}
+	
+	
+	\author{Belsai Arango Hern\'andez \\ Daniela Rodr\'iguez Cepero }
+	%
+	\authorrunning{Belsai Arango Hern'andez y Daniela Rodr\'iguez Cepero }
+	
+	\institute{Universidad de La Habana,\\
+		San L\'azaro y L. Plaza de la Revoluci\'on, La Habana, Cuba\\
+		\mailsa\\
+		\url{http://www.uh.cu}}
+	
+	
+	\maketitle
+	
+	
+	
+\section{Problema}
+
+	{\selectlanguage{spanish}
+\begin{center}
+{\large\bf Tito el corrupto}\\
+\end{center}
+Tito se di\'o cuenta de que la carrera de computaci\'on estaba acabando con \'el y
+un d\'ia decidi\'o darle un cambio radical a su vida. Comenz\'o a estudiar Ingenier\'ia
+Industrial. Luego de unos a\~nos de fiesta, logr\'o finalmente conseguir su t\'itulo
+de ingeniero. Luego de otros tantos a\~nos ejerciendo sus estudios (¿?), consigui\'o
+ponerse a la cabeza de un gran proyecto de construcci\'on de carreteras.\\
+
+La zona en la que debe trabajar tiene $n$ ciudades con $m$ posibles carreteras
+a construir entre ellas. Cada ciudad que sea incluida en el proyecto aportar\'a $a_i$
+d\'olares al proyecto, mientras que cada carretera tiene un costo de $w_i$ d\'olares.
+Si una carretera se incluye en el proyecto, las ciudades unidas por esta tambi\'en
+deben incluirse.\\
+
+El problema estar\'ia en que Tito quiere utilizar una de las habilidades que
+aprendi\'o en sus a\~nos de estudio, la de la malversaci\'on de fondos. Todo el dinero
+necesario para el proyecto que no sea un aporte de alguna ciudad, lo proveer\'ia
+el pa\'is y pasar\'ia por manos de Tito. El dinero aportado por las ciudades no
+pasar\'ia por sus manos. Tito quiere maximizar la cantidad de dinero que pasa
+por \'el, para poder hacer su magia. Ayude a Tito a seleccionar el conjunto de
+carreteras a incluir en el proyecto para lograr su objetivo
+
+\newpage
+\begin{abstract}
+ Se tienen $n$ ciudades y $m$ posibles carreteras a construir, cada ciudad que sea incluida en el proyecto aportar\'a $a_i$ d\'olares y la construcci\'on de la carretera cuesta $w_i$ d\'olares. Todo el dinero necesario para el proyecto que no sea un aporte de alguna ciudad, lo proveer\'ia el pa\'is y entonces pasar\'ia a manos de Tito. Se quiere seleccionar un conjunto de carreteras a incluir en el proyecto que maximice la cantidad de dinero que pasa
+por Tito. 
+
+\end{abstract}
+
+\section{Soluci\'on}
+
+ Se desea conocer la longitud del menor recorrido para visitar las $n+1$ ciudades iniciando por la ciudad $k$. Se tienen $n$ ciudades con coordenadas $(x,0)$ que se ordenan de forma creciente. La ciudad $p$ tiene coordenadas $(x,y)$ con $y \neq 0$.\\
+ 
+  Si el recorrido comienza en la ciudad $p$ el menor de ellos tendr\'a una longitud igual a la distancia entre las dos ciudades m\'as alejadas que se encuentran sobre el eje $x$, m\'as la menor distancia de estas con la ciudad $p$.\\
+ 
+Cuando comienza en alguna de las ciudades con coordenadas $(x,0)$ se determina, primero, por cada ciudad $i$ comenzando en $i = k$, el camino de menor longitud entre:
+\begin{itemize}
+\item A partir de $k$ visitar todas las ciudades a la izquierda, para luego regresar hasta la ciudad $i$ y visitar la ciudad $p$.
+\item A partir de $k$ visitar todas las ciudades hasta $i$, para luego regresar a la ciudad m\'as a la izquierda y visitar la ciudad $p$.\\
+\end{itemize}
+
+Las $n - i$ ciudades restantes se resuelven como el caso inicial en que se comenzaba por $p$ terminando en $n$.\\
+
+Luego del primer an\'alisis la menor longitud obtenida se compara con el resultado de verificar el proceso inverso. Equivalente a revertir el orden en que se encuentran las ciudades y aplicar el mismo algoritmo.
+ 
+Por cada ciudad $i$ desde la primera hasta la $k-$\'esima se escoge el camino que menor longitud genera entre:   
+\begin{itemize}
+\item A partir de $k$ visitar todas las ciudades de la izquierda hasta $i$, para luego regresar hasta la del extremo derecho y visitar la ciudad $p$; resolviendo las $i-1$ primeras como el caso inicial en que se comienza en $p$ y termina en la primera o en la $i-$\'esima - 1 ciudad.\\
+\item A partir de $k$ visitar todas las ciudades hasta llegar a la del extremo derecho, para luego regresar hasta la $i-$\'esima y visitar la ciudad $p$; resolviendo las $i-1$ primeras como el caso inicial en que se comienza en $p$ y termina en la primera o en la $i-$\'esima - 1.\\
+
+El resultado final es la menor longitud para recorrer todas las ciudades si se comienza en $k$.
+\end{itemize}
+
+
+\newpage
+\section{Correctitud}
+
+Se comienza demostrando que para un recorrido que inicia en $p$ la menor longitud est\'a dada por la distancia entre las dos ciudades m\'as alejadas sobre el eje $x$ m\'as la menor longitud de ellas con $p$.\\
+
+Demostraci\'on:\\
+Supongamos que existe un recorrido que comenzando en $p$ y visitando como primera ciudad una que no est\'a en los extremos, tiene una longitud menor o igual que un recorrido que comienza en $p$ y su primera visita es su extremo m\'as cercano. Sean $a, b, c, d$ las ciudades sobre el eje $x$. Si $p$ visita a $b$ entonces de visitar luego las ciudades $a$ y $d$ necesariamente se tiene que pasar por la ciudad $b$ \'o $p$ nuevamente. De ser por $b$ la arista $ab$ \'o $bd$ se repite y por desigualdad triangular $pb + ba > pa$ \,\,\, y \,\,\, $pb + bd > pd$ por tanto de no tomar la arista $pa$ \'o $pd$ que toma el segundo camino, consume dos aristas adicionales que su longitud total la hace mayor. Ahora, de ser por $p$ entonces existen $pb$, $bj$ y $pj$ para visitar las ciudades de $b$ a $j$, que el otro camino resuelve solo con $bj$, por tanto la longitud es mayor. Luego no existe un camino \'optimo para recorrer las $n+1$ ciudades empezando por $k$, que no sea visitando primero al extremo m\'as cercano.\\
+
+Falta demostrar que luego de visitar el extremo m\'as cercano, la menor longitud se obtiene visitando en esa misma direcci\'on hasta el otro extremo. Si existe un camino que no emplea una arista $ij$ que va desde una ciudad $i$ a una $j$ sobre el eje $x$ entonces tienen que estar las aristas $ip$ y $pj$, pero por desigualdad triangular $ip + pj > ij$, por tanto tiene una longitud mayor.\\
+ Queda demostrado que un recorrido que inicia en $p$ si primero visita a su extremo m\'as cercano y termina el recorrido por el eje $x$ en el otro extremo es \'optimo.\\
+
+Si el recorrido comienza en una ciudad con coordenadas $(x,0)$ el algoritmo determina para cada ciudad $i$, la menor longitud de llegar a $p$ visitando las $i$- primeras ciudades, las restantes las visita de forma \'optima a partir de $p$.\\
+ 
+Para encontrar la menor longitud de llegar a $p$ visitando las $i$-primeras ciudades se verifica la menor longitud entre:
+\begin{itemize}
+\item A partir de $k$ visitar todas las ciudades a la izquierda, para luego regresar hasta la ciudad $i$ y visitar la ciudad $p$.
+\item A partir de $k$ visitar todas las ciudades hasta $i$, para luego regresar a la ciudad m\'as a la izquierda y visitar la ciudad $p$.\\
+\end{itemize}  
+
+Si se tienen $i$ ciudades conectadas y tres de ellas est\'an conectadas dos a dos entonces existe un camino de longitud menor que las conecta.\\
+Demostraci\'on:\\
+Sea $a, b, c, d$ ciudades, donde $a,c,d$ est\'an sobre el eje $X$. Existen las aristas $ab$, $ac$, $bc$ y $cd$. Por desigualdad triangular $bc + cd > bd$, luego si se deshechan las aristas $bc$ y $cd$ y se a\~nade $bd$ se tiene un camino de menor longitud. 
+
+El algoritmo deshecha el caso en que a partir de $k$ se visita a la ciudad $p$ no habiendo visitado antes las $k$-primeras ciudades y a la derecha de $k$ existiendo ciudades tambi\'en sin visitar.\\
+Si en un recorrido se decide visitar primero a $p$ y dejar alguna de las $k$-primeras ciudades sin visitar entonces existen dos posibilidades: visitarlas a partir de $k$ o visitar a la derecha y luego volver para visitarlas. Para el primer caso, se llega a que se conectan tres ciudades dos a dos ($kp$, $pi$ y $ik$), no es \'optimo. En el segundo caso, si $d$ es la ciudad de la derecha visitada por $k$ entonces existen las aristas $kp$, $pd$ y $kd$, luego existen tres ciudades conectadas dos a dos, por tanto no es \'optimo. Se demuestra entonces que la soluci\'on propuesta de buscar la menor longitud para a partir de la ciudad $k$ terminar visitando a la ciudad $p$ habiendo visitado antes las $k$-primeras ciudades es factible. Solo falta verificar que es \'optima.\\
+
+Sea una soluci\'on \'optima y la soluci\'on que ofrece el algoritmo greedy, ambas desde $k$ hasta $p$. Tanto el greedy como  el \'optimo tienen al menos las aristas de las ciudades a la izquierda de $k$ comunes. Sea $pj$ la arista que termina en $p$ desde $j$ que pertenece al camino de $k$ a $p$ en el algoritmo \'optimo y $pd$ la arista en el caso del algoritmo greedy. Sea $ij$ la arista que conecta a la primera ciudad con la siguiente, en el algoritmo \'optimo. Si $j$ es igual a $p$ entonces el algoritmo greedy la toma, $d=i$, y los caminos de $k$ a $p$ ambos son iguales. En el caso de ser diferentes, $j$ es igual a la ciudad anterior, lo mismo ocurre con el greedy. Luego el \'optimo visita m\'inimo hasta la $k-$\'esima ciudad porque por desigualdad triangular la longitud desde la primera ciudad hasta la \'ultima que retrocedi\'o m\'as la de la arista con que llega a $p$ es mayor que la arista que sale desde la primera ciudad hasta $p$, sin visitar ninguna ciudad nueva. Por tanto, m\'inimo visita hasta $k$ luego visita tantas ciudades a la derecha como menor sea su distancia total a $p$. El camino \'optimo se parece m\'as al greedy hasta $p$. El greedy en $p$ decide recorrer las restantes ciudades recurriendo como el caso base donde la ciudad de partida es $p$, lo cual se demostr\'o que es \'optimo. Por tanto la longitud del camino greedy es menor o igual a la del camino \'optimo, entonces tambi\'en es una soluci\'on \'optima.\\
+
+Tambi\'en se deben analizar los caminos con los cuales se decide tomar primero las ciudades m\'as a la derecha. La soluci\'on inmediata es revertir las posiciones de referencia de las ciudades y analizar de la misma forma anterior. El algoritmo chequea dichos caminos sin revertir, comenzando desde la derecha a buscar la menor forma de llegar a $p$.
+
+
+\newpage
+\section{Complejidad Temporal}
+El algoritmo lee la entrada del problema e itera hasta $n$ (cantidad de ciudades ubicadas en $X0$) para colocar las coordenadas en una arreglo $a$. El orden de realizar dicha operaci\'on es $O(n)$. Luego ordena las coordenadas utilizando el algoritmo de ordenaci\'on de python que tiene una complejidad temporal de $O(n \log n)$. Para colocar en la primera posici\'on de la lista un elemento se emple\'o dos veces el reverse() de las listas de python lo cual es $O(n)$. Para ofrecer la soluci\'on se realizan dos recorridos, el primero desde $k$ hasta $n$, y el segundo desde 1 hasta $k$, en cada uno se realiza una cantidad constante de operaciones matem\'aticas elementales $O(1)$, como $0 \leq k \leq n$, la complejidad temporal ser\'a en el orden de $O(n)$. Por regla de la suma la complejidad temporal del algoritmo es de $O(n \log n)$. 
+
+\end{document}
