@@ -117,6 +117,10 @@ def EDMONDS_KARP(G,s,t):
         for e in edges_gf:
             if Gf.contain_edge(e):
                 e.flow = e.flow+cp
-            else: e.flow = e.flow - cp
+                e.reverse = e.reverse + cp
+                
+            else: 
+                e.flow = e.flow - cp
+                e.reverse = e.reverse - cp
             #update (𝑢,𝑣) and (𝑣,𝑢) in 𝐺_𝑓
 
