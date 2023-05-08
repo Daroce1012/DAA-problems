@@ -6,7 +6,11 @@ class Edge:
         self.node2 = node2
         self.capacity = capacity
         self.flow = 0
-        self.reverse = 0 
+        self.reverse = 0
+        
+    def equal(self,edge):
+        pass
+             
 
 class Node:
     def __init__(self, name, value):
@@ -16,6 +20,18 @@ class Graph:
     def __init__(self, nodes, edges):
         self.nodes = nodes
         self.edges = edges
+
+    def contain_edge(edge):
+        pass
+    
+    def contain_node(node):
+        pass
+
+    def index(node):
+        pass
+    
+    def copy():
+        pass
 
 
 def BFS(s,adj): # s, t representan indices
@@ -40,7 +56,7 @@ def BFS(s,adj): # s, t representan indices
     return path    
 
 
-def PATH_EK(Gf,s,t):#Red residual, fuente, receptor
+def PATH_EK(Gf,s,t): # Red residual, fuente, receptor
     path = BFS(Gf,s)
     p=[]
     
@@ -58,5 +74,10 @@ def PATH_EK(Gf,s,t):#Red residual, fuente, receptor
 
 def EDMONDS_KARP(G,s,t):
     edges  = G.edges
-    
+    nodes = G.nodes
+    Gf = G
+    p = PATH_EK(Gf,s,t)
+    while p!= None:
+        for
+        c_p = min()
     
