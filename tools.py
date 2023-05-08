@@ -1,4 +1,5 @@
 import math
+import copy
 
 class Edge:
     def __init__(self, node1, node2, capacity):
@@ -9,7 +10,11 @@ class Edge:
         self.reverse = 0
         
     def equal(self,edge):
-        pass
+        if self.node1.name == edge.node1.name and self.node2.name == edge.node2.name:
+            return True
+        if self.node1.name == edge.node2.name and self.node2.name == edge.node1.name:
+            return True
+        return False
              
 
 class Node:
@@ -21,17 +26,26 @@ class Graph:
         self.nodes = nodes
         self.edges = edges
 
-    def contain_edge(edge):
-        pass
+    def contain_edge(self, edge):
+        return edge in self.edges
     
-    def contain_node(node):
-        pass
+    def contain_node(self, node):
+        return node in self.nodes
 
-    def index(node):
-        pass
+    def index(self, node):
+        for i in range(0, len(self.nodes)):
+            if node == self.nodes[i]:
+                return i
+        return -1
     
-    def copy():
-        pass
+    def copy(self):
+        return copy.deepcopy(self)
+    
+    def find(self, node1, node2):
+        for edge in self.edges:
+            if (edge.node1 == node1 and edge.node2 == node2) or (edge.node2 == node1 and edge.node1 == node2):
+                return edge
+        return None
 
 
 def BFS(s,adj): # s, t representan indices
