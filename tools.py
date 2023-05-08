@@ -70,8 +70,8 @@ def BFS(s,adj): # s, t representan indices
     return path    
 
         
-def PATH_EK(Gf,s,t): # Red residual, fuente, receptor
-    path = BFS(Gf,s)
+def PATH_EK(Gf,s,t,adj): # Red residual, fuente, receptor
+    path = BFS(Gf,s,adj)
     p=[]
     
     if len(path)< 0 :
@@ -86,14 +86,14 @@ def PATH_EK(Gf,s,t): # Red residual, fuente, receptor
     return p    
         
 
-def EDMONDS_KARP(G,s,t):
+def EDMONDS_KARP(G,s,t,adj):
     G = Graph()
     
     edges  = G.edges
     nodes = G.nodes
     Gf = G.copy()
     Gf = Graph()
-    p = PATH_EK(Gf,s,t)
+    p = PATH_EK(Gf,s,t,adj)
     
     while p!= None:
         
@@ -118,9 +118,15 @@ def EDMONDS_KARP(G,s,t):
             if Gf.contain_edge(e):
                 e.flow = e.flow+cp
                 e.reverse = e.reverse + cp
+                if e.capacity - e.flow <=0:
+                    i = e.node1.name
+                    j = e.node2.name
+                    adj[i].remove(j)
                 
-            else: 
+            else: #si es la arista inversa
                 e.flow = e.flow - cp
                 e.reverse = e.reverse - cp
-            #update (𝑢,𝑣) and (𝑣,𝑢) in 𝐺_𝑓
-
+                if e.reverse <=0:
+                    i = e.node2.name
+                    j = e.node1.name
+                    adj[i].remove(j)
