@@ -130,8 +130,8 @@ def EDMONDS_KARP(G,s,t,adj):
         
         cp = math.inf
         edges_gf = []
-        for i in range(1,len(p)):
-            if i%2 == 0:
+        for i in range(0,len(p)):
+            if (i+1)%2 == 0:
                 edge = Gf.find(node1,node2)
 
                 
@@ -221,31 +221,35 @@ def ady_list(graph):
 
 node1 = Node(0, 9)
 node2 = Node(1, 8)
-node3 = Node(2, 7)
-node4 = Node(3, 6)
+# node3 = Node(2, 7)
+# node4 = Node(3, 6)
 
-node5 = Node(4, 5)
-node6 = Node(5, 4)
-node7 = Node(6, 3)
-node8 = Node(7, 2)
+# node5 = Node(4, 5)
+# node6 = Node(5, 4)
+# node7 = Node(6, 3)
+# node8 = Node(7, 2)
 
-node9 = Node(8, 1)
+# node9 = Node(8, 1)
 
 edge1 = Edge(node1, node2, 10)
-edge2 = Edge(node2, node3, 20)
+# edge2 = Edge(node2, node3, 20)
 
-edge3 = Edge(node3, node4, 30)
-edge4 = Edge(node4, node5, 40)
+# edge3 = Edge(node3, node4, 30)
+# edge4 = Edge(node4, node5, 40)
 
-edge5 = Edge(node5, node6, 50)
-edge6 = Edge(node6, node7, 60)
+# edge5 = Edge(node5, node6, 50)
+# edge6 = Edge(node6, node7, 60)
 
-edge7 = Edge(node7, node8, 80)
-edge8 = Edge(node8, node9, 70)
+# edge7 = Edge(node7, node8, 80)
+# edge8 = Edge(node8, node9, 70)
 
-nodes = [node1, node2, node3, node4, node5, node6, node7, node8, node9]
+# nodes = [node1, node2, node3, node4, node5, node6, node7, node8, node9]
 
-edges = [edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8]
+# edges = [edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8]
+
+nodes = [node1, node2]
+
+edges = [edge1]
 
 grafo = Graph(nodes, edges)
 
