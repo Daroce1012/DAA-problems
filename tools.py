@@ -123,7 +123,7 @@ def EDMONDS_KARP(G,s,t,adj):
     Gf = G.copy()
     p = PATH_EK(Gf,s,t,adj)
     
-    while not p == None:
+    while not (len(p) == 1 and p[0] == -1):
         
         node1=None
         node2= t
@@ -155,20 +155,34 @@ def EDMONDS_KARP(G,s,t,adj):
                 e.reverse = e.reverse + cp
                 if e.capacity - e.flow <=0:
                     i = e.node1.name
-                    j = e.node2.name
-                    adj[i].remove(j)
+                    j = e.node2
+                    # if j in adj[i]:
+                    remove_node(ady[i], j)
+                        # adj[i].remove_node(j)
                 
             else: #si es la arista inversa
                 e.flow = e.flow - cp
                 e.reverse = e.reverse - cp
                 if e.reverse <=0:
                     i = e.node2.name
-                    j = e.node1.name
-                    adj[i].remove(j)
+                    j = e.node1
+                    # if j in adj[i]:
+                    remove_node(ady[i], j)
+                        # adj[i].remove(j)
                 if e.capacity - e.flow > 0:
                     i = e.node1.name
-                    j = e.node2.name
+                    j = e.node2
                     adj[i].append(j)
+        p = PATH_EK(Gf,s,t,adj)
+
+def remove_node(ady, node):
+    ady_copy = ady
+    for item in ady_copy:
+        if item.name == node.name:
+            ady.remove(item)
+            return
+    
+    
                 
 
 def convert_to_flow(graph):
