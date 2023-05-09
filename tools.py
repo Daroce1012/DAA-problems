@@ -165,6 +165,11 @@ def EDMONDS_KARP(G,s,t,adj):
                     i = e.node2.name
                     j = e.node1.name
                     adj[i].remove(j)
+                if e.capacity - e.flow > 0:
+                    i = e.node1.name
+                    j = e.node2.name
+                    adj[i].append(j)
+                
 
 def convert_to_flow(graph):
     fuente = Node(0, 0)
