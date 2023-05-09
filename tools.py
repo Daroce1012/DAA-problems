@@ -60,8 +60,6 @@ def BFS(s,adj): # s, t representan indices
         path.append(-1)
     d[s.name] = 0
 
-    # print("path")
-    # print(path)
     
     while len(queue):
         u = queue.pop(0)
@@ -70,30 +68,17 @@ def BFS(s,adj): # s, t representan indices
         print(u.name)
 
         for v in adj[u.name]:
-            # print(v)
             if d[v.name] == math.inf:
                 d[v.name] = d[u.name]+1
                 path[v.name] = u
-                # print('path')
-                # print(v.name)
                 queue.append(v)    
         
-    # print(path)
-    # for p in path :
-    #     if not p == -1:
-    #         print(p.name)
 
-    # print("End")
     return path    
 
         
 def PATH_EK(Gf,s,t,adj): # Red residual, fuente, receptor
-    # path = BFS(Gf,s,adj)
     path = BFS(s,adj)
-    # for p in path:
-    #     if not p == -1:
-    #         print("vertices")
-    #         print(p.name)
     p=[]
     
     if len(path) < 0 :
@@ -101,12 +86,8 @@ def PATH_EK(Gf,s,t,adj): # Red residual, fuente, receptor
     
     node_temp = t
 
-    # print(node_temp.name)
 
     while not node_temp == -1 :
-
-        # print("node_temp")
-        # print(node_temp)
 
         parent = path[node_temp.name]
         p.append(parent)
@@ -119,7 +100,6 @@ def EDMONDS_KARP(G,s,t,adj):
     
     edges  = G.edges
     nodes = G.nodes
-    # Gf = copy.copy(G)
     Gf = G.copy()
     p = PATH_EK(Gf,s,t,adj)
     
@@ -156,9 +136,7 @@ def EDMONDS_KARP(G,s,t,adj):
                 if e.capacity - e.flow <=0:
                     i = e.node1.name
                     j = e.node2
-                    # if j in adj[i]:
                     remove_node(ady[i], j)
-                        # adj[i].remove_node(j)
                 
             else: #si es la arista inversa
                 e.flow = e.flow - cp
@@ -166,9 +144,7 @@ def EDMONDS_KARP(G,s,t,adj):
                 if e.reverse <=0:
                     i = e.node2.name
                     j = e.node1
-                    # if j in adj[i]:
                     remove_node(ady[i], j)
-                        # adj[i].remove(j)
                 if e.capacity - e.flow > 0:
                     i = e.node1.name
                     j = e.node2
