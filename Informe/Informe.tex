@@ -91,19 +91,45 @@ Luego de aplicar el flujo m\'aximo con el corte antes mencionado nos quedar\'iam
 Como problema requiere que se seleccione un conjunto de carreteras y ciudades unidas a estas de tal manera que nos quede el máximo número de beneficios.
 Digamos que inicialmente tenemos todos los ingresos de los proyectos. Así que nuestro ingreso total (inicialmente) es igual a $\sum_{i=1}R(w_i)$.
 
-Ahora, como cuando elegimos una carretera, se unen las ciudades correspondientes. Supongamos que las carreteras que no hemos seleccionado están en un conjunto P y las ciudades que nos hacen perder dinero están en un conjunto M. Entonces, definitivamente podemos escribir algo como esto:\\
-max\{ingresos\} = $\sum_iR(w_i)-\sum_iR(Pi)-\sum_iC(Mi)$.\\
+Ahora, como cuando elegimos una carretera, se unen las ciudades correspondientes. Supongamos que las carreteras que no hemos seleccionado están en un conjunto P y las ciudades que nos hacen perder dinero están en un conjunto A. Entonces, definitivamente podemos escribir algo como esto:\\
+max\{ingresos\} = $\sum_iR(w_i)-\sum_iR(Pi)-\sum_iC(Ai)$.\\
 
 Podemos ver que la primera de las tres sumas en el lado derecho de la ecuaci\'on es constante. Ahora, si podemos minimizar las dos \'ultimas sumas, podemos obtener los ingresos m\'aximos.\\
 
-Entonces queremos minimizar $\sum_iR(Pi)+\sum_iC(Mi)$.\\ 
+Entonces queremos minimizar $\sum_iR(Pi)+\sum_iC(Ai)$.\\ 
 
-Así que construimos un gráfico donde cada proyecto está conectado a la fuente S con capacidad R(pi) y cada máquina está conectada al sumidero T con capacidad C(mi). Y en caso de que un proyecto en particular necesite una cierta cantidad de máquinas, agregamos bordes de cada proyecto a las máquinas que necesita con capacidad ∞ para garantizar que si se toma un proyecto, también se toman las máquinas requeridas correspondientes.
+As\'i que construimos un grafo donde cada carretera est\'a conectado a la fuente S con capacidad $R(w_i)$ y cada ciudad est\'a conectada al receptor T con capacidad $C(a_i)$. Y como las carreteras dependen de las ciudades que esta\'an unidas a esta, agregamos aristas desde las carreteras hacia las ciudades de las que depende con capacidad $\infty$ para garantizar que si se toma una carretera, también se toman las ciudades requeridas correspondientes.
 
-Finalmente, calculamos el corte mínimo del gráfico construido
+Finalmente, calculamos el corte m\'inimo del grafo construido.\\
+
+El corte sobre la red de flujo $G$ con flujo m\'aximo $f^*$ es de capacidad m\'inima.
+	\textbf{Demostraci\'on:}
+	\begin{itemize} 
+		\item[]  Sea el corte $(S,T)$ formado por $S = \{s,v_1,v_2,...,v_k\} $ y $T = \{v_{k+1},v_{k+2},...,v_{n-2},t\} $ donde todo v\'ertice $v_i \in S$ es alcanzable por $s$ a trav\'es de un camino en la red residual $G_f$ y todo v\'ertice en $T$ ser\'ian los no alcanzables por $s$ bajo este criterio. Ambos conjuntos son no vac\'ios, pues a $S$ al menos pertenece el v\'ertice $s$ y a $T$ pertenece el v\'ertice $t$, pues si no perteneciera significa que existe un camino de $s$ hacia $t$ en $G_f$ lo que implica que ser\'ia un camino aumentativo y ser\'ia posible incrementar el flujo utilizando dicho camino lo cual entra en contradicci\'on con el hecho de que $f^*$ es un flujo m\'aximo en $G$.
+		
+		Luego, toda arista $< u,v >$ que cruza el corte $(S,T)$ de $S$ hacia $T$, donde $u \in S$ y $v \in T$ cumple que $f(< u,v >) = c(< u,v >)$, pues si existiese $< u,v >$ que cruza el corte tal que $f(< u,v >) < c(< u,v >)$ entonces la arista $< u,v >$ no estar\'ia saturada y existiera en $G_f$ por lo que el camino de $s$ hacia $u$ de aristas no saturadas, adicionando la arista $< u,v >$ forman un camino $s$ hacia $v$ en $G_f$ lo cual es una contradicci\'on pues $v \in T$. 
+		
+		Adem\'as toda arista $< v,u >$ que cruza el corte desde $T$ hacia $S$ donde $u \in S$ y $v \in T$ cumple que $f(< u,v >) = 0$, pues si existiese $< v,u >$ que cruza el corte tal que $f(< v,u >) > 0$ entonces dicha arista da origen a una arista inversa $< u,v >$ en $G_f$, como $u \in S$, entonces existe un camino desde $s$ hacia $u$ en $G_f$ que al unirse con la arista $< u,v >$ dar\'ia lugar a un camino de $s$ hacia $v$ en $G_f$ lo cual es una contradicci\'on con el hecho de que $v \in T$.
+		
+		Por lo tanto todas las aristas que salen de $S$ est\'an saturadas y todas las que entran tienen flujo 0. Demostremos entonces que la capacidad del corte $(S,T)$ es igual al valor del flujo m\'aximo $f^*$ en $G$. Sabemos que $|f^*| = f(S,T)$ por el $Lema$ 26.4 visto en conferencia. Luego: 
+		
+		$|f^*| = f(S,T) = \sum\limits_{u\in S}\sum\limits_{v\in T}f(u,v)-\sum\limits_{u\in S}\sum\limits_{v\in T}f(v,u)$ 
+		
+		Pero como demostramos anteriormente que $f(u,v)=c(u,v)$ y $f(v,u)=0$ donde $u \in S$ y $v \in T$ entonces:
+		
+		$|f^*| = f(S,T) = \sum\limits_{u\in S}\sum\limits_{v\in T}c(u,v)-\sum\limits_{u\in S}\sum\limits_{v\in T}0 = \sum\limits_{u\in S}\sum\limits_{v\in T}c(u,v) = C(S,T)$
+		
+		Luego la capacidad del corte $(S,T)$ es igual al valor del flujo m\'aximo $f^*$ en $G$ por lo que su capacidad es m\'inima ya que $|f^*|$ es una cota m\'inima de la capacidad de todo corte por $Corolario$ 26.5 visto en conferencias en EDA.  
+	\end{itemize}   
+	
+Para hayar el flujo m\'aximo con corte m\'inimo se utiliza el algoritmo Edmonds-Karp que genera una red residual en donde las aristas que est\'an presentes representan las aristas no saturadas, y las que est\'an conectadas al receptor ser\'ian las ciudades cuyo aporte es mayor que el costo de la carretera a la que est\'a unida y por tanto la contrucci\'on de esta no le permitir\'ia a Tito lograr su objetivo. Entonces el conjunto de soluci\'on ser\'ia el de las carreteras que no est\'en unidas a estas ciudades.\\
 
 \newpage
 \section{Complejidad Temporal}
-El algoritmo lee la entrada del problema e itera hasta $n$ (cantidad de ciudades ubicadas en $X0$) para colocar las coordenadas en una arreglo $a$. El orden de realizar dicha operaci\'on es $O(n)$. Luego ordena las coordenadas utilizando el algoritmo de ordenaci\'on de python que tiene una complejidad temporal de $O(n \log n)$. Para colocar en la primera posici\'on de la lista un elemento se emple\'o dos veces el reverse() de las listas de python lo cual es $O(n)$. Para ofrecer la soluci\'on se realizan dos recorridos, el primero desde $k$ hasta $n$, y el segundo desde 1 hasta $k$, en cada uno se realiza una cantidad constante de operaciones matem\'aticas elementales $O(1)$, como $0 \leq k \leq n$, la complejidad temporal ser\'a en el orden de $O(n)$. Por regla de la suma la complejidad temporal del algoritmo es de $O(n \log n)$. 
+El algoritmo Edmonds-Karp se ejecuta $O(|V|*|E|)$ veces (ver demostraci\'on en I. to A. 3ra. Edición Cap. 26)
+Pero sabemos adem\'as, que cada iteraci\'on toma tiempo $ O(|E|)$ ya que el camino aumentativo se halla utilizando un BFS (BFS es $O(|V|+|E|)$ pero en la red de flujo, $|V|$ es $O(|E|)$). El resto de las operaciones, o sea actualizar la Red Residual y el flujo que se va calculando, se pueden hacer tambi\'en en ese mismo orden de tiempo
+Por tanto,
+el tiempo de ejecuci\'on del algoritmo es $O(|V|*{|E|}^2)$.
+
 
 \end{document}
