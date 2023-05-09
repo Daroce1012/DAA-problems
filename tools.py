@@ -178,13 +178,17 @@ def EDMONDS_KARP(G,s,t,adj):
     solucion = []
     carreteras = []
     mark_nodes = []
+
     for i in range(0, len(ady[0])):
         carreteras.append(ady[0][i])
         mark_nodes.append(0)
-    for item in ady[t]:
+
+    for item in ady[t.name]:
         for carretera in ady[item.name]:
             carr = [i for i in range(0, len(carreteras)) if carreteras[i].name == carretera.name]
-            mark_nodes[carr[0]] = 1
+            if not len(carr) == 0:
+                mark_nodes[carr[0]] = 1
+
     for i in range(0, len(carreteras)):
         if mark_nodes[i] == 0:
             solucion.append(carreteras[i])
