@@ -126,10 +126,17 @@ Para hayar el flujo m\'aximo con corte m\'inimo se utiliza el algoritmo Edmonds-
 
 \newpage
 \section{Complejidad Temporal}
+La soluci\'on del problema utiliza el algoritmo Edmonds-Karp para obtener la red de flujo m\'aximo con corte m\'inimo. 
+
 El algoritmo Edmonds-Karp se ejecuta $O(|V|*|E|)$ veces (ver demostraci\'on en I. to A. 3ra. Edición Cap. 26)
 Pero sabemos adem\'as, que cada iteraci\'on toma tiempo $ O(|E|)$ ya que el camino aumentativo se halla utilizando un BFS (BFS es $O(|V|+|E|)$ pero en la red de flujo, $|V|$ es $O(|E|)$). El resto de las operaciones, o sea actualizar la Red Residual y el flujo que se va calculando, se pueden hacer tambi\'en en ese mismo orden de tiempo
 Por tanto,
 el tiempo de ejecuci\'on del algoritmo es $O(|V|*{|E|}^2)$.
+
+Tambi\'en se utilizaron m\'etodos auxiliares en la construcci\'on del grafo y la matriz adjunta como $ady list$ cuyo costo es $O(|V|*|E|)$, $convert to flow$ con costo de $O(|E|)$.\\
+
+Luego por regla de la suma el costo de la soluci\'on del problema es $O(|V|*{|E|}^2)$.
+
 
 
 \end{document}
