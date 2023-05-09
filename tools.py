@@ -126,7 +126,7 @@ def EDMONDS_KARP(G,s,t,adj):
     while not (len(p) == 1 and p[0] == -1):
         
         node1=None
-        node2= t
+        node2= t 
         
         cp = math.inf
         edges_gf = []
@@ -174,6 +174,23 @@ def EDMONDS_KARP(G,s,t,adj):
                     j = e.node2
                     adj[i].append(j)
         p = PATH_EK(Gf,s,t,adj)
+    
+    solucion = []
+    carreteras = []
+    mark_nodes = []
+    for i in range(0, len(ady[0])):
+        carreteras.append(ady[0][i])
+        mark_nodes.append(0)
+    for item in ady[t]:
+        for carretera in ady[item.name]:
+            carr = [i for i in range(0, len(carreteras)) if carreteras[i].name == carretera.name]
+            mark_nodes[carr[0]] = 1
+    for i in range(0, len(carreteras)):
+        if mark_nodes[i] == 0:
+            solucion.append(carreteras[i])
+    return solucion
+
+
 
 def remove_node(ady, node):
     ady_copy = ady
