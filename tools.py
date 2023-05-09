@@ -44,7 +44,7 @@ class Graph:
     
     def find(self, node1, node2):
         for edge in self.edges:
-            if (edge.node1 == node1 and edge.node2 == node2) or (edge.node2 == node1 and edge.node1 == node2):
+            if (edge.node1.name == node1.name and edge.node2.name == node2.name) or (edge.node2.name == node1.name and edge.node1.name == node2.name):
                 return edge
         return None
 
@@ -54,35 +54,61 @@ def BFS(s,adj): # s, t representan indices
     path = []
     d = []
     queue.append(s)
-    path.append(-1)
     
     for i in range(len(adj)):
         d.append(math.inf)
-    print(s)
+        path.append(-1)
     d[s.name] = 0
+
+    # print("path")
+    # print(path)
     
     while len(queue):
         u = queue.pop(0)
+
+        print("u")
+        print(u.name)
+
         for v in adj[u.name]:
+            # print(v)
             if d[v.name] == math.inf:
                 d[v.name] = d[u.name]+1
                 path[v.name] = u
+                # print('path')
+                # print(v.name)
                 queue.append(v)    
         
+    # print(path)
+    # for p in path :
+    #     if not p == -1:
+    #         print(p.name)
+
+    # print("End")
     return path    
 
         
 def PATH_EK(Gf,s,t,adj): # Red residual, fuente, receptor
     # path = BFS(Gf,s,adj)
     path = BFS(s,adj)
+    # for p in path:
+    #     if not p == -1:
+    #         print("vertices")
+    #         print(p.name)
     p=[]
     
-    if len(path)< 0 :
+    if len(path) < 0 :
         return None
     
     node_temp = t
-    while node_temp :
-        parent = path[node_temp]
+
+    # print(node_temp.name)
+
+    while not node_temp == -1 :
+
+        # print("node_temp")
+        # print(node_temp)
+
+        parent = path[node_temp.name]
         p.append(parent)
         node_temp=parent
     
@@ -93,10 +119,11 @@ def EDMONDS_KARP(G,s,t,adj):
     
     edges  = G.edges
     nodes = G.nodes
+    # Gf = copy.copy(G)
     Gf = G.copy()
     p = PATH_EK(Gf,s,t,adj)
     
-    while p!= None:
+    while not p == None:
         
         node1=None
         node2= t
@@ -105,14 +132,21 @@ def EDMONDS_KARP(G,s,t,adj):
         edges_gf = []
         for i in range(1,len(p)):
             if i%2 == 0:
-                edge = Edge(Gf.find(node1,node2))
-                edges_gf.append(edge)
-                r = edge.capacity-edge.flow #Si la arista esta saturada
-                if r:
-                    cp = min(cp,r)
-                else:
-                    cp = min(cp,edge.reverse)    
-                node2 = p[i]
+                edge = Gf.find(node1,node2)
+
+                
+                if not edge == None:
+
+                    print("edge")
+                    print(edge.capacity)
+
+                    edges_gf.append(edge)
+                    r = edge.capacity - edge.flow #Si la arista esta saturada
+                    if r:
+                        cp = min(cp,r)
+                    else:
+                        cp = min(cp,edge.reverse)    
+                    node2 = p[i]
             else: node1 = p[i]
         
         for e in edges_gf:
@@ -137,6 +171,7 @@ def convert_to_flow(graph):
     receptor = Node("receptor", 0)
     nodes = [fuente]
     edges = []
+
     for edge in graph.edges:
         #crear el nodo que representa la arista en el grafo
         node = Node(len(nodes), 0)
@@ -156,7 +191,12 @@ def convert_to_flow(graph):
 
         edges.append(Edge(node1, receptor, edge.node1.value))
         edges.append(Edge(node2, receptor, edge.node2.value))
-    
+
+    receptor.name=len(nodes)
+
+    print("receptor.name")
+    print(receptor.name)
+
     nodes.append(receptor)
 
     return Graph(nodes, edges)
@@ -169,11 +209,11 @@ def ady_list(graph):
         # print(node.name)
         for edge in graph.edges:
             if edge.node1 == node:
-                l.append(edge.node2.name)
+                l.append(edge.node2)
                 # print("Vecino")
                 # print(edge.node2.name)
             elif edge.node2 == node:
-                l.append(edge.node1.name)
+                l.append(edge.node1)
                 # print("Vecino")
                 # print(edge.node1.name)
         ady.append(l)
@@ -209,11 +249,13 @@ edges = [edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8]
 
 grafo = Graph(nodes, edges)
 
-ady = ady_list(grafo)
+
 # for l in ady_list(grafo):
 #     print(l)
 
 red_flujo = convert_to_flow(grafo)
+
+ady = ady_list(red_flujo)
 
 print(EDMONDS_KARP(red_flujo,red_flujo.nodes[0],red_flujo.nodes[len(red_flujo.nodes)-1],ady))
 
