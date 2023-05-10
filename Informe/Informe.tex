@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 %\usepackage{titlesec}
 \usepackage[hidelinks]{hyperref}
+\usepackage{listings}
 
 \usepackage[english, spanish]{babel}
 %\usepackage[utf8]{inputenc}
@@ -133,10 +134,70 @@ Pero sabemos adem\'as, que cada iteraci\'on toma tiempo $ O(|E|)$ ya que el cami
 Por tanto,
 el tiempo de ejecuci\'on del algoritmo es $O(|V|*{|E|}^2)$.
 
+Para obtener la soluci\'on luego de aplicar el algoritmo Edmonds-Karp se realiza un ciclo por la cantidad de v\'ertices adyacentes a la fuente en la red de flujo, que en el grafo principal representa la cantidad de carreteras(aristas) por tanto du tiempo de ejecuci\'on es $O(|E|)$
+
+Luego por cada v\'ertice adyacente al receptor que representa las ciudades en la red de flujo se buscan sus v\'ertices adyacentes que son las carreteras para marcarlos como carreteras no v\'alidas a construir, es decir no forma parte de la soluci\'on. Por tanto el tiempo de ejecuci\'on es la cantidad de ciudades por la cantidad de carreteras  $O(|V|*|E|)$
+
+El \'ultimo ciclo es un ciclo en la cantidad de carreteras por tanto es $O(|E|)$
+
 Tambi\'en se utilizaron m\'etodos auxiliares en la construcci\'on del grafo y la matriz adjunta como $ady list$ cuyo costo es $O(|V|*|E|)$, $convert to flow$ con costo de $O(|E|)$.\\
 
 Luego por regla de la suma el costo de la soluci\'on del problema es $O(|V|*{|E|}^2)$.
 
+\newpage
+\section{Tester}
+\begin{lstlisting}
+def tester_solution(grafo, edges_to_build, cities_to_build, pos):
 
+1    if pos == len(grafo.edges):
+2        presp = Obtener_presupuesto(grafo, edges_to_build, cities_to_build)
+3        return presp
+
+4    max_pres = 0
+
+5    for i in range(pos, len(grafo.edges)):
+
+6        visitado1= False
+7        visitado2 = False
+        
+
+8        pres_1 = tester_solution(grafo, edges_to_build, cities_to_build, i+1)
+
+9        edges_to_build[i] = 1
+
+10        vert1 = grafo.edges[i].node1
+11        vert2 = grafo.edges[i].node2
+
+12        if not cities_to_build[vert1.name] == 1:
+13            visitado1 = True
+14            cities_to_build[vert1.name] = 1
+15        if not cities_to_build[vert2.name] == 1:
+16            visitado2 = True
+17            cities_to_build[vert2.name] = 1
+
+18        pres_2 = tester_solution(grafo, edges_to_build, cities_to_build, i+1)
+
+19        edges_to_build[i] = 0
+
+20        if visitado1:
+21            cities_to_build[vert1.name] = 0
+22        if visitado2:
+23            cities_to_build[vert2.name] = 0
+
+24        if max(pres_1, pres_2) > max_pres:
+25            max_pres = max(pres_1, pres_2)
+
+26    return max_pres
+\end{lstlisting}
+El m\'etodo tiene como par\'ametro de entrada el grafo, una lista donde se encuentran las carreteras a construir que se representan a trav\'es de las aristas, una lista con los v\'ertices del grafo a construir que representan las ciudades y un entero que representa la posici\'on actual.\\
+Lineas 1-2: es la condici\'on de parada del tester\_solution, es decir si la posici\'on actual llego al final de la lista de las aristas del grafo significa que tenemos una soluci\'on. Se calcula el presupuesto teniendo en cuenta las ciudades y las carreteras que se van a construir que est\'an en las listas cities\_to\_build y edges\_to\_build respectivamente y devuelve ese valor.\\
+Linea 4: se incializa la variable max\_pres que representa el presupuesto m\'aximo que se tiene hasta el momento.\\
+Lineas 5-25: la idea es por cada arista del grafo se quiere hallar el m\'aximo presupuesto entre el presupuesto que se obtiene al construir una arista(carretera) y el presupuesto que se obtiene al no construirla, teniendo en cuenta que construir una arista lleva impl\'icito la construcci\'on de los v\'ertices(ciudades) que est\'an conectados a ella.\\
+Linea 8: se realiza la llamada al m\'etodo para construir una soluci\'on en la que la arista actual(carretera) no forma parte de la listas de carreteras a construir, el valor que se obtiene que representa el presupuesto se guarda en la variable pres\_1.\\
+Linea 9: se marca la arista actual en la lista de carreteras a construir.\\
+Lineas 10-11: Se guardan los v\'ertices que est\'an conectados a la arista actual para marcarlos como v\'ertices(ciudades) a construir.\\
+Linea 18: se hace el llamado para hallar el presupuesto teniendo en cuenta que la arista actual forma parte de las aristas a construir y se guarda en la varible pres\_2.\\
+Lineas 24: Se compara el m\'aximo presupuesto entre el pres\_1 y el pres\_2 y el presupuesto m\'aximo obtenido hasta el momento.\\
+Linea 26: se retorna el presupuesto m\'aximo.\\
 
 \end{document}

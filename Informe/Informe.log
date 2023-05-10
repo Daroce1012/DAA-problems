@@ -1,8 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2022.10.6)  8 MAY 2023 23:54
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2022.9.30)  10 MAY 2023 11:11
 entering extended mode
 **Informe.tex
-("D:\UH_Computer Science\4to\DAA\Problemas\Tito el Corrupto\Informe\Informe.tex
-"
+(C:\Users\Belsai\Documents\Github\DAA-problems\Informe\Informe.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -14,7 +13,7 @@ an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese,
 romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
 sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
 senglishmax, welsh, loaded.
-("D:\UH_Computer Science\4to\DAA\Problemas\Tito el Corrupto\Informe\llncs.cls"
+(C:\Users\Belsai\Documents\Github\DAA-problems\Informe\llncs.cls
 Document Class: llncs 2013/09/27 v2.18 
  LaTeX document class for Lecture Notes in Computer Science
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -389,6 +388,31 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip53
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty"
+\lst@mode=\count147
+\lst@gtempboxa=\box56
+\lst@token=\toks25
+\lst@length=\count148
+\lst@currlwidth=\dimen145
+\lst@column=\count149
+\lst@pos=\count150
+\lst@lostspace=\dimen146
+\lst@width=\dimen147
+\lst@newlines=\count151
+\lst@lineno=\count152
+\lst@maxwidth=\dimen148
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count153
+\lst@skipnumbers=\count154
+\lst@framebox=\box57
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.sty"
 Package: babel 2008/07/08 v3.8m The Babel package
 
@@ -403,8 +427,8 @@ Language: english 2005/03/30 v3.3o English support from the babel system
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2008/07/08 v3.8m Babel common definitions
-\babel@savecnt=\count147
-\U@D=\dimen145
+\babel@savecnt=\count155
+\U@D=\dimen149
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
@@ -412,72 +436,72 @@ File: babel.def 2008/07/08 v3.8m Babel common definitions
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\spanish.ldf"
 Language: spanish.ldf 2009/01/02 v5.0h Spanish support from the babel system
-\es@datefmt=\count148
-\es@quottoks=\toks25
-\es@quotdepth=\count149
+\es@datefmt=\count156
+\es@quottoks=\toks26
+\es@quotdepth=\count157
 Package babel Info: Making " an active character on input line 492.
 Package babel Info: Making . an active character on input line 585.
 Package babel Info: Making < an active character on input line 630.
 Package babel Info: Making > an active character on input line 630.
 ))
-("D:\UH_Computer Science\4to\DAA\Problemas\Tito el Corrupto\Informe\Informe.aux
-")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+(C:\Users\Belsai\Documents\Github\DAA-problems\Informe\Informe.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package 1.2 or 1.3 is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count150
-\scratchdimen=\dimen146
-\scratchbox=\box56
-\nofMPsegments=\count151
-\nofMParguments=\count152
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count153
-\MPscratchDim=\dimen147
-\MPnumerator=\count154
-\makeMPintoPDFobject=\count155
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count158
+\scratchdimen=\dimen150
+\scratchbox=\box58
+\nofMPsegments=\count159
+\nofMParguments=\count160
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count161
+\MPscratchDim=\dimen151
+\MPnumerator=\count162
+\makeMPintoPDFobject=\count163
+\everyMPtoPDFconversion=\toks28
 )
-\AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 18.
+\AtBeginShipoutBox=\box59
+Package hyperref Info: Link coloring OFF on input line 19.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count156
+\c@section@level=\count164
 )
-LaTeX Info: Redefining \ref on input line 18.
-LaTeX Info: Redefining \pageref on input line 18.
-LaTeX Info: Redefining \nameref on input line 18.
+LaTeX Info: Redefining \ref on input line 19.
+LaTeX Info: Redefining \pageref on input line 19.
+LaTeX Info: Redefining \nameref on input line 19.
 
-("D:\UH_Computer Science\4to\DAA\Problemas\Tito el Corrupto\Informe\Informe.out
-")
-("D:\UH_Computer Science\4to\DAA\Problemas\Tito el Corrupto\Informe\Informe.out
-")
+(C:\Users\Belsai\Documents\Github\DAA-problems\Informe\Informe.out)
+(C:\Users\Belsai\Documents\Github\DAA-problems\Informe\Informe.out)
 \@outlinefile=\write3
+\c@lstlisting=\count165
 
-("D:\UH_Computer Science\4to\DAA\Problemas\Tito el Corrupto\Informe\Informe.toc
-"
+(C:\Users\Belsai\Documents\Github\DAA-problems\Informe\Informe.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 2.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 2.
@@ -493,37 +517,37 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 41.
+(hyperref)                removing `\\' on input line 42.
 
 Missing character: There is no Â in font cmr10!
 Missing character: There is no ¿ in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--55
+Underfull \hbox (badness 10000) in paragraph at lines 51--56
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--61
+Underfull \hbox (badness 10000) in paragraph at lines 57--62
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--82
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--84
+Underfull \hbox (badness 10000) in paragraph at lines 84--85
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
@@ -538,36 +562,36 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¡ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¡ in font cmr10!
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 95.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 96.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--96
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
+Underfull \hbox (badness 10000) in paragraph at lines 95--97
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 99--100
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
 
  []
 
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no © in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
 
  []
 
 
-Overfull \hbox (22.94139pt too wide) in paragraph at lines 108--109
+Overfull \hbox (22.94139pt too wide) in paragraph at lines 109--110
 []\OT1/cmr/m/n/10 Sea el cor-te $(\OML/cmm/m/it/10 S; T\OT1/cmr/m/n/10 )$ for-m
 a-do por $\OML/cmm/m/it/10 S \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OML/cmm/m/it/
 10 s; v[]; v[]; :::; v[]\OMS/cmsy/m/n/10 g$ \OT1/cmr/m/n/10 y $\OML/cmm/m/it/10
@@ -576,7 +600,7 @@ MS/cmsy/m/n/10 g$
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
@@ -584,33 +608,64 @@ Underfull \hbox (badness 10000) in paragraph at lines 125--126
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ³ in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
 [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
+Overfull \hbox (42.88043pt too wide) in paragraph at lines 150--152
+[][][][][][][][][][][][][][][][][][] 
+ []
 
-("D:\UH_Computer Science\4to\DAA\Problemas\Tito el Corrupto\Informe\Informe.aux
-")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 142.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 142.
+
+Overfull \hbox (108.8811pt too wide) in paragraph at lines 153--154
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (120.88123pt too wide) in paragraph at lines 164--166
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (126.88129pt too wide) in paragraph at lines 178--180
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 187.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 187.
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--202
+
+ []
+
+[7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 203.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 203.
+ (C:\Users\Belsai\Documents\Github\DAA-problems\Informe\Informe.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 203.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 203.
 Package rerunfilecheck Info: File `Informe.out' has not changed.
-(rerunfilecheck)             Checksum: C817DB477058DC92D7365522A65F6093;323.
+(rerunfilecheck)             Checksum: 2796A34DF1EE04417840BA42274D0DD8;376.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 46 ({)
+### simple group (level 1) entered at line 47 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7844 strings out of 494045
- 114899 string characters out of 3145972
- 218837 words of memory out of 3000000
- 11040 multiletter control sequences out of 15000+200000
+ 9075 strings out of 494045
+ 132978 string characters out of 3145966
+ 285692 words of memory out of 3000000
+ 12211 multiletter control sequences out of 15000+200000
  10780 words of font info for 42 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 44i,5n,42p,731b,610s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,5n,42p,731b,1321s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
@@ -626,9 +681,9 @@ es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86
 )/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on Informe.pdf (6 pages, 190568 bytes).
+Output written on Informe.pdf (8 pages, 203672 bytes).
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 191 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
