@@ -1,3 +1,4 @@
+from regex import REVERSE
 from generador import *
 
 def BFS(s,adj): # s, t representan indices
@@ -8,78 +9,57 @@ def BFS(s,adj): # s, t representan indices
     
     for i in range(len(adj)):
         d.append(math.inf)
-        path.append(-1)
+        path.append(None)
     d[s.name] = 0
 
-    
     while len(queue):
         u = queue.pop(0)
-
-        print("u")
-        print(u.name)
-
+        
         for v in adj[u.name]:
             if d[v.name] == math.inf:
                 d[v.name] = d[u.name]+1
                 path[v.name] = u
                 queue.append(v)    
-        
-
     return path    
 
         
-def PATH_EK(Gf,s,t,adj): # Red residual, fuente, receptor
+def PATH_EK(s,t,adj): # Red residual, fuente, receptor
     path = BFS(s,adj)
-    p=[]
     
-    if len(path) < 0 :
+    if path[t.name] is None :
         return None
     
+    p=[]
     node_temp = t
 
-
-    while not node_temp == -1 :
-
+    while not node_temp == None :
+        p.append(node_temp)
         parent = path[node_temp.name]
-        p.append(parent)
         node_temp=parent
     
     return p    
         
 
 def EDMONDS_KARP(G,s,t,adj):
-    
-    edges  = G.edges
-    nodes = G.nodes
     Gf = G.copy()
-    p = PATH_EK(Gf,s,t,adj)
-    
-    while not (len(p) == 1 and p[0] == -1):
+    p = PATH_EK(s,t,adj) #Devuelve el camino desde la fuente al receptor
+    cp = math.inf
+    edges_gf = []
         
-        node1=None
-        node2= t 
-        
-        cp = math.inf
-        edges_gf = []
-        for i in range(0,len(p)):
-            if (i+1)%2 == 0:
-                edge = Gf.find(node1,node2)
-
-                
-                if not edge == None:
-
-                    print("edge")
-                    print(edge.capacity)
-
-                    edges_gf.append(edge)
-                    r = edge.capacity - edge.flow #Si la arista esta saturada
-                    if r:
-                        cp = min(cp,r)
-                    else:
-                        cp = min(cp,edge.reverse)    
-                    node2 = p[i]
-            else: node1 = p[i]
-        
+    while p is not None:
+        p.reverse()
+        edges_gf.clear()
+        #Busca la capacidad minima
+        for i in range(0,len(p)-1):
+            edge = Gf.find(p[i],p[i+1])
+            if not edge == None:
+                edges_gf.append(edge)
+                r = edge.capacity - edge.flow #Si la arista esta saturada
+                if r:
+                    cp = min(cp,r)
+                else:
+                    cp = min(cp,edge.reverse)    
+                    
         for e in edges_gf:
             if Gf.contain_edge(e):
                 e.flow = e.flow+cp
@@ -88,7 +68,6 @@ def EDMONDS_KARP(G,s,t,adj):
                     i = e.node1.name
                     j = e.node2
                     remove_node(ady[i], j)
-                
             else: #si es la arista inversa
                 e.flow = e.flow - cp
                 e.reverse = e.reverse - cp
@@ -100,26 +79,35 @@ def EDMONDS_KARP(G,s,t,adj):
                     i = e.node1.name
                     j = e.node2
                     adj[i].append(j)
-        p = PATH_EK(Gf,s,t,adj)
+        p = PATH_EK(s,t,adj)    
     
-    solucion = []
-    carreteras = []
-    mark_nodes = []
-
-    for i in range(0, len(ady[0])):
-        carreteras.append(ady[0][i])
-        mark_nodes.append(0)
-
-    for item in ady[t.name]:
-        for carretera in ady[item.name]:
-            carr = [i for i in range(0, len(carreteras)) if carreteras[i].name == carretera.name]
-            if not len(carr) == 0:
-                mark_nodes[carr[0]] = 1
-
-    for i in range(0, len(carreteras)):
-        if mark_nodes[i] == 0:
-            solucion.append(carreteras[i])
-    return solucion
+    road = []
+    city = []
+    road_name=[]
+    # Obtiene las ciudades no saturadas
+    for c in adj[t.name]:
+        if adj[c.name].count(t):
+            city.append(c)
+    
+    
+    for r in G.edges:
+        if r.node1.value:
+            count = city.count(r.node2)
+            if not count :
+                if not road.count(r.node1) :
+                    road.append(r.node1)
+            elif road.count(r.node1):
+                road.remove(r.node1)    
+    
+    for r in road:
+        road_name.append(r.name)
+                    
+    return road_name
+    
+    
+    
+    
+    
 
 
 
@@ -130,18 +118,15 @@ def remove_node(ady, node):
             ady.remove(item)
             return
     
-    
-                
-
 def convert_to_flow(graph):
     fuente = Node(0, 0)
     receptor = Node("receptor", 0)
     nodes = [fuente]
     edges = []
-
+    e = 1
     for edge in graph.edges:
         #crear el nodo que representa la arista en el grafo
-        node = Node(len(nodes), 0)
+        node = Node(len(nodes), e)
         nodes.append(node)
         #crear la arista entre la fuente y el nodo creado
         edges.append(Edge(nodes[0], node, edge.capacity))
@@ -158,11 +143,9 @@ def convert_to_flow(graph):
 
         edges.append(Edge(node1, receptor, edge.node1.value))
         edges.append(Edge(node2, receptor, edge.node2.value))
+        e = e+1
 
     receptor.name=len(nodes)
-
-    print("receptor.name")
-    print(receptor.name)
 
     nodes.append(receptor)
 
@@ -200,7 +183,7 @@ node2 = Node(1, 8)
 
 # node9 = Node(8, 1)
 
-edge1 = Edge(node1, node2, 10)
+edge1 = Edge(node1, node2, 20)
 # edge2 = Edge(node2, node3, 20)
 
 # edge3 = Edge(node3, node4, 30)
