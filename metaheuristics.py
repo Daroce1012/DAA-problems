@@ -79,9 +79,6 @@ def mate_progenitors(prog_a, prog_b):
 
     half = (int)(len(prog_a)/2)
 
-    print("HALF")
-    print(half)
-
     new_solution = []
 
     for i in range(half):
@@ -93,17 +90,10 @@ def mate_progenitors(prog_a, prog_b):
         return new_solution
 
     return []
-#CASO EN EL QUE LA SOLUCION NO ES VALIDAA
     
 def mate_population(progenitor_list):
 
     new_population_set = []
-
-    # list_a = [[[96, 64, 87], [69, 65], [12, 58, 61], [71, 88, 42, 98], [67, 51]], [[76, 19, 65, 40], [55, 56], [74, 3], [96, 68, 27], [69, 31, 64]]]
-
-    # list_b = [[[94, 53], [41, 28], [49, 16], [87, 66, 96], [38, 36, 51]]]
-
-    # progenitor_list = np.array([list_a,list_b])
 
     print("PROGENITOR_LIST")
     print(progenitor_list)
@@ -113,12 +103,9 @@ def mate_population(progenitor_list):
     if len(progenitor_list[1]) == 0:
         return progenitor_list[0]
 
-    # print(min(len(progenitor_list[0]), len(progenitor_list[1])))
-
     pos = 0
 
     for i in range(min(len(progenitor_list[0]), len(progenitor_list[1]))):
-        # if i < len(progenitor_list[0]) and i < len(progenitor_list[1]):
         prog_a, prog_b = progenitor_list[0][i], progenitor_list[1][i]
         offspring = mate_progenitors(prog_a, prog_b)
         if not len(offspring) == 0:
@@ -134,15 +121,6 @@ def mate_population(progenitor_list):
         
     return new_population_set
 
-def mutate_offspring(offspring, mutation_rate):
-    #TODO: Your code here!
-    return None
-    
-def mutate_population(new_population_set, mutation_rate):
-    mutated_pop = []
-    for offspring in new_population_set:
-        mutated_pop.append(mutate_offspring(offspring, mutation_rate))
-    return np.array(mutated_pop)
 
 def stop_criterion(t):
     # return t >= 10000 
@@ -169,8 +147,9 @@ def evolutionary_algorithm(pop_size):
     
         progenitor_list = progenitor_selection(populations[t],fitnes_list)
         new_population_set = mate_population(progenitor_list)
-        # mutated_pop = mutate_population(new_population_set, mutation_rate)
+
         t = t+1
+
         if len(new_population_set) == 1 and valid_solution(new_population_set[0]):
             return new_population_set[0]
 
@@ -179,11 +158,8 @@ def evolutionary_algorithm(pop_size):
         else:
             break
         
-        # populations.append(mutated_pop)
-    
     return best_solution
 
-# evolutionary_algorithm()
 
 def random_generator(courses = 5, solutions_count = 5):
 
