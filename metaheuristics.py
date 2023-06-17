@@ -14,7 +14,7 @@ def initialize_population(pop_size):
         sol_i = pop_size[i] 
         population_set.append(sol_i)
         
-    return np.array(population_set)
+    return population_set
 
 
 def valid_solution(solution):
@@ -35,7 +35,7 @@ def fitness_eval(x):
     return 0
 
 def get_all_fitnes(population_set, pop_size):
-    fitnes_list = np.zeros(len(pop_size), dtype=int)
+    fitnes_list = np.zeros(len(population_set), dtype=int)
 
     print("FITNES LIST")
     print(fitnes_list)
@@ -44,7 +44,7 @@ def get_all_fitnes(population_set, pop_size):
     print(pop_size)
 
     #Looping over all solutions computing the fitness for each solution
-    for i in range(len(pop_size)):
+    for i in range(len(population_set)):
         fitnes_list[i] = fitness_eval(population_set[i])
 
     return fitnes_list
@@ -58,13 +58,12 @@ def progenitor_selection(population_set,fitnes_list):
     list_change=True
 
     for i in range(len(fitnes_list)):
-        if fitnes_list[i]:
-            if list_change:
-                progenitor_list_a.append(population_set[i])
-                list_change = False
-            else:
-                progenitor_list_b.append(population_set[i])
-                list_change = True
+        if list_change:
+            progenitor_list_a.append(population_set[i])
+            list_change = False
+        else:
+            progenitor_list_b.append(population_set[i])
+            list_change = True
     
     
     return np.array([progenitor_list_a,progenitor_list_b])
@@ -86,20 +85,52 @@ def mate_progenitors(prog_a, prog_b):
     new_solution = []
 
     for i in range(half):
-        new_solution[i]=prog_a[i]
+        new_solution.append(prog_a[i])
     for i in range(half, len(prog_b)):
-        new_solution[i]=prog_b[i]
+        new_solution.append(prog_b[i])
 
     if valid_solution(new_solution):
         return new_solution
+
+    return []
 #CASO EN EL QUE LA SOLUCION NO ES VALIDAA
     
 def mate_population(progenitor_list):
+
     new_population_set = []
-    for i in range(progenitor_list.shape[1]):
+
+    # list_a = [[[96, 64, 87], [69, 65], [12, 58, 61], [71, 88, 42, 98], [67, 51]], [[76, 19, 65, 40], [55, 56], [74, 3], [96, 68, 27], [69, 31, 64]]]
+
+    # list_b = [[[94, 53], [41, 28], [49, 16], [87, 66, 96], [38, 36, 51]]]
+
+    # progenitor_list = np.array([list_a,list_b])
+
+    print("PROGENITOR_LIST")
+    print(progenitor_list)
+
+    if len(progenitor_list[0]) == 0:
+        return new_population_set
+    if len(progenitor_list[1]) == 0:
+        return progenitor_list[0]
+
+    # print(min(len(progenitor_list[0]), len(progenitor_list[1])))
+
+    pos = 0
+
+    for i in range(min(len(progenitor_list[0]), len(progenitor_list[1]))):
+        # if i < len(progenitor_list[0]) and i < len(progenitor_list[1]):
         prog_a, prog_b = progenitor_list[0][i], progenitor_list[1][i]
         offspring = mate_progenitors(prog_a, prog_b)
-        new_population_set.append(offspring)
+        if not len(offspring) == 0:
+            new_population_set.append(offspring)
+        pos = i + 1
+
+    if pos < len(progenitor_list[0]):
+        for i in range(pos, len(progenitor_list[0])):
+            new_population_set.append(progenitor_list[0][i])
+    if pos < len(progenitor_list[1]):
+        for i in range(pos, len(progenitor_list[1])):
+            new_population_set.append(progenitor_list[1][i])
         
     return new_population_set
 
@@ -140,8 +171,14 @@ def evolutionary_algorithm(pop_size):
         new_population_set = mate_population(progenitor_list)
         # mutated_pop = mutate_population(new_population_set, mutation_rate)
         t = t+1
+        if len(new_population_set) == 1 and valid_solution(new_population_set[0]):
+            return new_population_set[0]
+
+        if not len(new_population_set) == 0:
+            populations.append(new_population_set)
+        else:
+            break
         
-        populations.append(new_population_set)
         # populations.append(mutated_pop)
     
     return best_solution
@@ -159,9 +196,10 @@ def random_generator(courses = 5, solutions_count = 5):
 
         for _ in range(courses):
             subjects = []
-            count_subjects = random.randrange(2,8)
+            count_subjects = random.randrange(2,5)
             for _ in range(count_subjects):
                 subjects.append(random.randrange(1,100))
+            subjects.sort()
             solution.append(subjects)
 
         print("solution")
@@ -175,8 +213,12 @@ def random_generator(courses = 5, solutions_count = 5):
     
     return poblacion_set
 
-def main():
 
-    return evolutionary_algorithm(random_generator())
+
+def main():
+    
+    print("Solucion")
+    print(evolutionary_algorithm(random_generator()))
+    # return evolutionary_algorithm(random_generator())
 
 main()
