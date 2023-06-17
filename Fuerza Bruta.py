@@ -8,7 +8,7 @@ def test_problem():
 
 def problem(m):
     k = len(m[0])
-    days = marck_matrix(max_matrix(k,m))
+    days = mark_matrix(max_matrix(k,m))
     proposals = []
     return func_proposals(m,k,days,proposals) 
     
@@ -17,11 +17,11 @@ def func_proposals(m,k,days,proposals):
         return proposals
     for prop in m:
         proposals.append(prop)
-        if not_contain(days,prop) and func_proposals(m,k,marck(days,prop),proposals):
+        if not_contain(days,prop) and func_proposals(m,k,mark(days,prop),proposals):
             return proposals
         proposals.remove(prop)   
             
-def marck (days, proposal):
+def mark(days, proposal):
     days_ = days
     for p in proposal:
         days_[p] = True
@@ -41,7 +41,7 @@ def max_matrix(k,m):
                 max = m[i][j]   
     return max            
                 
-def marck_matrix(max):
+def mark_matrix(max):
     list = []
     for i in range(0,max+1):
         list.append(False)
