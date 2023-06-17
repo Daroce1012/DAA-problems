@@ -37,11 +37,11 @@ def fitness_eval(x):
 def get_all_fitnes(population_set, pop_size):
     fitnes_list = np.zeros(len(population_set), dtype=int)
 
-    print("FITNES LIST")
-    print(fitnes_list)
+    # print("FITNES LIST")
+    # print(fitnes_list)
 
-    print("POP SIZE")
-    print(pop_size)
+    # print("POP SIZE")
+    # print(pop_size)
 
     #Looping over all solutions computing the fitness for each solution
     for i in range(len(population_set)):
@@ -71,11 +71,11 @@ def progenitor_selection(population_set,fitnes_list):
 #VARIACION
 def mate_progenitors(prog_a, prog_b):
 
-    print("prog_a")
-    print(prog_a)
+    # print("prog_a")
+    # print(prog_a)
 
-    print("prog_b")
-    print(prog_b)
+    # print("prog_b")
+    # print(prog_b)
 
     half = (int)(len(prog_a)/2)
 
@@ -95,8 +95,8 @@ def mate_population(progenitor_list):
 
     new_population_set = []
 
-    print("PROGENITOR_LIST")
-    print(progenitor_list)
+    # print("PROGENITOR_LIST")
+    # print(progenitor_list)
 
     if len(progenitor_list[0]) == 0:
         return new_population_set
@@ -154,6 +154,9 @@ def evolutionary_algorithm(pop_size):
             return new_population_set[0]
 
         if not len(new_population_set) == 0:
+            for item in new_population_set:
+                if valid_solution(item):
+                    return item
             populations.append(new_population_set)
         else:
             break
@@ -178,14 +181,14 @@ def random_generator(courses = 5, solutions_count = 5):
             subjects.sort()
             solution.append(subjects)
 
-        print("solution")
-        print(solution)
+        # print("solution")
+        # print(solution)
 
         poblacion_set.append(solution)
         count = count+1
 
-    print("poblacion_set")
-    print(poblacion_set)
+    # print("poblacion_set")
+    # print(poblacion_set)
     
     return poblacion_set
 
